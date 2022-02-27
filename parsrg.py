@@ -1,10 +1,18 @@
 from lexrg import LexerRegul
 
 def parse(lex : LexerRegul):
-    return regex(lex)
+    if lex.nextc() != "/":
+        print("error : pattern must start with '/'")
+    
+    ast = regex(lex)
+    
+    if lex.nextc() != "/":
+        print("error : pattern must end with '/'")
+    
+    return ast
 
 def regex(lex : LexerRegul):
-    pass
+    pass    
 
 def expr(lex : LexerRegul):
     pass
