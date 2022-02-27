@@ -10,4 +10,3 @@ def errsyntx(msg : any):
 
 def errpatt(msg : any):
     log("pattern error",msg)
-
