@@ -1,14 +1,15 @@
 from lexrg import LexerRegul
+from loging import errpatt
 
 def parse(lex : LexerRegul):
     if lex.nextc() != "/":
-        print("error : pattern must start with '/'")
+        errpatt("input start with '/'")
     
     ast = regex(lex)
     
     if lex.nextc() != "/":
-        print("error : pattern must end with '/'")
-    
+        errpatt("input end with '/'")
+            
     return ast
 
 def regex(lex : LexerRegul):

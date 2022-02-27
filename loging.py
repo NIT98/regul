@@ -8,3 +8,5 @@ def errlex(msg : any):
 def errsyntx(msg : any):
     log("syntax error",msg)
 
+def errpatt(msg : any):
+    log("pattern error",msg)
