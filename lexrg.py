@@ -12,4 +12,9 @@ class LexerRegul:
 
         return c
 
-        
+    def prevc(self) -> str:
+        if self.pos < 1:
+            return None
+
+        self.pos -= 1
+        return self.input[self.pos]
