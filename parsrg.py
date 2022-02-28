@@ -1,16 +1,18 @@
 from lexrg import LexerRegul
 from loging import errpatt
 
-def parse(lex : LexerRegul):
+def parse(lex:LexerRegul):
     if lex.nextc() != "/":
         errpatt("input start with '/'")
-        exit(1)
+        return
     
     regex(lex)
-    
+
     if lex.nextc() != "/":
         errpatt("input end with '/'")
-        exit(1)
+        return
+
+    print("accepted!")
 
 def regex(lex : LexerRegul):
     lex.pos = len(lex.input) - 1
