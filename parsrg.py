@@ -33,16 +33,19 @@ def exprunion(lex: LexerRegul):
     exprpost(lex)
 
     if eq(lex.curc(), "|"):
+        print("union")
         lex.nextc()
         expr(lex)
 
 def exprpost(lex : LexerRegul):
     exprprim(lex)
-    
     if unaryoprator(lex):
+        print("opr")
         lex.nextc()
     elif eq(lex.curc(),"{"):
         exprsize(lex)
+    else:
+        print("post")
 
 def exprsize(lex : LexerRegul):
     print("sizing")        
@@ -60,7 +63,7 @@ def unaryoprator(lex : LexerRegul):
 
 def exprprim(lex : LexerRegul):
     c = lex.curc()
-
+    print("prim")
     if eq(c,"("):
         exprgroup(lex)
     elif eq(c,"["):
@@ -69,7 +72,6 @@ def exprprim(lex : LexerRegul):
         exprany(lex)
     else:
         lex.nextc()
-    
 
 def exprgroup(lex : LexerRegul):
     print("group")        
