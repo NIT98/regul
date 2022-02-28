@@ -86,7 +86,7 @@ def item(lex : LexerRegul):
     c = lex.nextc()
     while not eq(c,"]"):  
         range(lex)
-    
+
 def range(lex : LexerRegul):
     ch1 = ch(lex)
 
@@ -94,7 +94,13 @@ def range(lex : LexerRegul):
         ch2 = ch(lex)
 
 def digit(lex : LexerRegul):
-    pass
+    c = lex.nextc()
+    t = ''
+    while c.isnumeric():
+        t += c
+        c = lex.nextc()
+
+    lex.nextc()
 
 def ch(lex : LexerRegul):
     pass
