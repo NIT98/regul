@@ -92,10 +92,10 @@ def item(lex : LexerRegul):
         range(lex)
 
 def range(lex : LexerRegul):
-    ch1 = ch(lex)
+    ch(lex)
 
     if eq(lex.nextc(),"-"):
-        ch2 = ch(lex)
+        ch(lex)
 
 def digit(lex : LexerRegul):
     c = lex.nextc()
@@ -107,4 +107,4 @@ def digit(lex : LexerRegul):
     lex.nextc()
 
 def ch(lex : LexerRegul):
-    pass
+    lex.nextc()
