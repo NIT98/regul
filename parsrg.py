@@ -5,7 +5,12 @@ def parse(lex:LexerRegul):
     if lex.nextc() != "/":
         errpatt("input start with '/'")
         return
-    
+    if lex.nextc() == "^":
+        #start with
+        pass
+    else:
+        lex.prevc()
+ 
     regex(lex)
 
     if lex.nextc() != "/":
