@@ -59,7 +59,7 @@ def exprpost(lex : LexerRegul) -> ASTNode:
         return unast
 
     elif eq(lex.curc(),"{"):
-        sast = ASTNode("expr",AstType.SIZING)
+        sast = ASTNode("expr",AstType.POST_SIZING)
         sast.addchild(exprsize(lex))
         return sast 
 
