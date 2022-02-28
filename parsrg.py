@@ -1,4 +1,5 @@
 from operator import eq, le,ne
+import re
 from astrg import ASTNode, AstType
 from lexrg import LexerRegul
 from loging import errexpec
@@ -59,8 +60,8 @@ def exprpost(lex : LexerRegul) -> ASTNode:
 
     elif eq(lex.curc(),"{"):
         sast = ASTNode("size",AstType.SIZING)
-        sast.addchild(exprsize(lex))
-        return sast
+        sast.addchild()
+        return exprsize(lex)
 
     else:
         return past
@@ -121,14 +122,15 @@ def exprset(lex : LexerRegul):
         errexpec("]",lex.pos)
 
 def sizing(lex : LexerRegul):
+    szast = ASTNode("sizing",AstType.SIZING)
     if lex.curc().isnumeric():
-        digit(lex)
-        print("size min")
+        szast.addchild(digit(lex))
     
     if eq(lex.curc(),","):
         lex.nextc()
-        digit(lex)
-        print("size max")
+        szast.addchild(digit(lex))
+
+    return szast
 
 def item(lex : LexerRegul):
     itast = ASTNode("item",AstType.ITEM)
