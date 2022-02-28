@@ -11,6 +11,7 @@ class AstType ( Enum ):
     UNION = "UNION",
     CONCAT = "concact",
     GROUP = "group",
+    POST_SIZING = "POST_SIZING"
     SIZING = "sizing"
     ANY = ".",
     START = "^",
