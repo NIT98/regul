@@ -24,3 +24,8 @@ class LexerRegul:
 
     def end(self) -> str:
         return self.input[len(self.input) - 1]
+
+    #end of input
+    def eoi(self) -> str:
+        return self.pos >= len(self.input)
+ 
