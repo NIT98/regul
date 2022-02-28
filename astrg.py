@@ -2,6 +2,7 @@ from enum import Enum
 from typing import Any, Dict, List
 
 class AstType ( Enum ):
+    SYNTAX_TREE = "stree"
     REGEX = "regex"
     EXPR = "expr"
     MORE_THAN_ONE = "+"
