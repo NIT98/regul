@@ -17,7 +17,7 @@ def parse(lex:LexerRegul) -> ASTNode:
 
     return root
 
-def regex(lex : LexerRegul):
+def regex(lex : LexerRegul) -> ASTNode:
     regast = ASTNode("regex",AstType.REGEX)
     if lex.eoi():
         return regast
