@@ -60,7 +60,17 @@ def unaryoprator(lex : LexerRegul):
     return lex.curc() in ["+","*","?"]
 
 def exprprim(lex : LexerRegul):
-    pass
+    c = lex.curc()
+
+    if eq(c,"("):
+        exprgroup(lex)
+    elif eq(c,"["):
+        exprset(lex)
+    elif eq(c,"."):
+        exprany(lex)
+    else:
+        lex.nextc()
+    
 
 def exprgroup(lex : LexerRegul):
     print("group")        
@@ -73,7 +83,7 @@ def exprgroup(lex : LexerRegul):
         errexpec(")",lex.pos)
 
 def exprany(lex : LexerRegul):
-    return eq(lex.curc(), ".")
+    lex.nextc()
 
 def exprset(lex : LexerRegul):
     if ne(lex.nextc(),"["):
