@@ -39,6 +39,8 @@
     regex := | 
             expr regex
 
+    expr := expr-union
+     
     expr-union := expr-unary  |
         expr-unary | expr
     
