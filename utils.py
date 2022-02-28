@@ -13,7 +13,7 @@ def toany3d(parent : ASTNode) -> Node:
     for i in range(0,len(parent.children)):
         child : ASTNode  = parent.children[i]
         ca3 = Node(child.label,parent=root)
-        d = child.value("d")
+        d = child.getval("d")
         if d:
             Node(d,parent=ca3)
 
