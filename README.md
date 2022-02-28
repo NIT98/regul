@@ -40,9 +40,9 @@
             expr regex
 
     expr := expr-union
-     
-    expr-union := expr-unary  |
-        expr-unary | expr
+
+    expr-union := expr-post  |
+        expr-post | expr
     
     expr-post := expr-prim expr-unary |
                  expr-prim expr-size
