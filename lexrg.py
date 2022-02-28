@@ -18,3 +18,7 @@ class LexerRegul:
 
         self.pos -= 1
         return self.input[self.pos]
+
+    def start(self) -> str:
+        return self.input[0]
+    
