@@ -15,7 +15,7 @@ def parse(lex : LexerRegul):
     return ast
 
 def regex(lex : LexerRegul):
-    pass 
+    lex.pos = len(lex.input) - 1
 
 def expr(lex : LexerRegul):
     pass
