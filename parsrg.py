@@ -100,7 +100,7 @@ def exprgroup(lex : LexerRegul):
         errexpec(")",lex.pos)
 
 def exprany(lex : LexerRegul):
-    pass
+    return eq(lex.curc(), ".")
 
 def exprset(lex : LexerRegul):
     pass
