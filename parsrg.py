@@ -57,7 +57,7 @@ def exprprim(lex : LexerRegul):
     if eq(c,"."):
         print("any")        
     if eq(c,"("):
-        print("start group")
+        print("group")
         expr(lex)
         if ne(lex.nextc(),")"):
             errexpec(")",lex.pos)
@@ -76,12 +76,12 @@ def exprprim(lex : LexerRegul):
 def sizing(lex : LexerRegul):
     if lex.curc().isnumeric():
         digit(lex)
-        print("size digit min")
+        print("size min")
     
     if eq(lex.curc(),","):
         lex.nextc()
         digit(lex)
-        print("size digit max")
+        print("size max")
 
 def item(lex : LexerRegul):
     while ne(lex.curc(),"]"):  
