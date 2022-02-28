@@ -64,12 +64,12 @@ def expr(lex : LexerRegul):
     if eq(c,"("):
         pass
     if eq(c,"["):
-        if eq(lex.nextc(),"^"):
+        if eq(lex.curc(),"^"):
             #not set
             pass
         else:
             #set
-            lex.prevc()
+            pass
 
         item(lex)
 
