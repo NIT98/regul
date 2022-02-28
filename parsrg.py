@@ -150,10 +150,13 @@ def digit(lex : LexerRegul):
         t += c
         c = lex.nextc()
 
-    print("digit",t)
     lex.prevc()
 
-def ch(lex : LexerRegul):
     ast = ASTNode("ch",AstType.CH)
-    ast.setval("data",lex.nextc())
+    ast.setval("d",t)
+    return ast
+
+def ch(lex : LexerRegul) -> ASTNode:
+    ast = ASTNode("ch",AstType.CH)
+    ast.setval("d",lex.nextc())
     return ast
