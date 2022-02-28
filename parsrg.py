@@ -97,7 +97,7 @@ def digit(lex : LexerRegul):
         t += c
         c = lex.nextc()
 
-    lex.nextc()
+    lex.prevc()
 
 def ch(lex : LexerRegul):
     lex.nextc()
