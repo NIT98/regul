@@ -45,16 +45,15 @@ def exprpost(lex : LexerRegul):
         exprsize(lex)
 
 def exprsize(lex : LexerRegul):
+    print("sizing")        
+   
     if ne(lex.nextc(),"{"):
         errexpec("{",lex.pos)
 
-    print("sizing")        
     sizing(lex)
     
     if ne(lex.nextc(),"}"):
         errexpec("}",lex.pos)
-    
-    print("end sizing")   
 
 def unaryoprator(lex : LexerRegul):
     return lex.curc() in ["+","*","?"]
