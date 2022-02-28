@@ -40,15 +40,30 @@ def exprunion(lex: LexerRegul) -> ASTNode:
 
     return past
 
-def exprpost(lex : LexerRegul):
-    exprprim(lex)
+def totype(v : str):
+    if eq(v,"+"):
+        return AstType.MORE_THAN_ONE
+    if eq(v,"*"):
+        return AstType.MORE_THAN_ZERO
+    if eq(v,"?"):
+        return AstType.BE_OR_NOT
+    return None
+
+def exprpost(lex : LexerRegul) -> ASTNode:
+    past = exprprim(lex)
     if unaryoprator(lex):
-        print("opr")
-        lex.nextc()
+        ctype = lex.nextc()
+        unast = ASTNode("unary",totype(ctype))
+        unast.addchild(past)
+        return unast
+
     elif eq(lex.curc(),"{"):
-        exprsize(lex)
+        sast = ASTNode("size",AstType.SIZING)
+        sast.addchild(exprsize(lex))
+        return sast
+
     else:
-        print("post")
+        return past
 
 def exprsize(lex : LexerRegul):
     print("sizing")        
