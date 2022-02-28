@@ -76,6 +76,9 @@ def exprany(lex : LexerRegul):
     return eq(lex.curc(), ".")
 
 def exprset(lex : LexerRegul):
+    if ne(lex.nextc(),"["):
+        errexpec("]",lex.pos)
+    
     if eq(lex.curc(),"^"):
         lex.nextc()
         print("notset")
