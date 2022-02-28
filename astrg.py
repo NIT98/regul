@@ -24,3 +24,8 @@ class ASTNode():
     def rmchildidx(self,chidx):
         return self.children.pop(chidx)
 
+    def setval(self,key:str,value : Any):
+        self.value[key] = value
+
+    def getval(self,key:str,value : Any):
+        self.value[key] = value
