@@ -1,0 +1,25 @@
+Regex Pattern :
+    /^([^a-z]+|P){0,1}$/
+
+Sytnax Tree :
+    root
+    └── regex
+        ├── expr-size
+        │   ├── expr-group
+        │   │   └── union
+        │   │       ├── unary
+        │   │       │   └── expr-not-set
+        │   │       │       └── item
+        │   │       │           └── range
+        │   │       │               ├── ch
+        │   │       │               │   └── a
+        │   │       │               └── ch
+        │   │       │                   └── z
+        │   │       └── ch
+        │   │           └── P
+        │   └── sizing
+        │       ├── digit
+        │       │   └── 0
+        │       └── digit
+        │           └── 1
+        └── regex
