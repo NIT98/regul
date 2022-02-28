@@ -17,4 +17,6 @@ class ASTNode():
 
     def addchild(self,child):
         self.children.append(child)
-    
+
+    def rmchild(self,child):
+        self.children.remove(child)
