@@ -4,7 +4,7 @@ class LexerRegul:
         self.pos = 0
 
     def nextc(self) -> str:
-        if len(self.input) <= self.pos:
+        if self.eoi():
             return ''
 
         c = self.input[self.pos] 
