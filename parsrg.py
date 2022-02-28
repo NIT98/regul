@@ -80,16 +80,11 @@ def expr(lex : LexerRegul):
         errsyntx("pattern is not valid")
 
 def sizing(lex : LexerRegul):
-    c = lex.nextc()
-    lex.prevc()
-
-    if c.isnumeric():
+    if lex.curc().isnumeric():
         digit(lex)
     
-    if eq(lex.nextc(),","):
+    if eq(lex.curc(),","):
         digit(lex)
-    else:
-        lex.prevc()
 
 def item(lex : LexerRegul):
     c = lex.nextc()
