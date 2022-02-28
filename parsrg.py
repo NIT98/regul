@@ -1,6 +1,8 @@
-from operator import eq,ne
+from operator import eq, le,ne
 from lexrg import LexerRegul
 from loging import errexpec
+
+spec = ["[","]","(",")","{","}",".","+","*","?","|"]
 
 def parse(lex:LexerRegul):
     if eq(lex.start(),"^"):
@@ -14,11 +16,11 @@ def parse(lex:LexerRegul):
     regex(lex)
 
     print("accepted!")
+    print(lex.input)
 
 def regex(lex : LexerRegul):
-    # lex.pos = len(lex.input) - 1
     if lex.eoi():
-        print("end of input")
+        print("eoi")
         return
 
     expr(lex)
@@ -29,11 +31,10 @@ def expr(lex : LexerRegul):
 
 def exprpost(lex : LexerRegul):
     exprprim(lex)
-        
-    c = lex.nextc()
     
+    c = lex.nextc()
     if eq(c,"+"):
-        print("plus")        
+        print("plus",lex.curc())     
     elif eq(c,"?"):
         print("ignore")        
     elif eq(c,"*"):
@@ -42,9 +43,8 @@ def exprpost(lex : LexerRegul):
         print("union")        
         expr(lex)
     elif eq(c,"{"):
-        print("start sizing")        
+        print("sizing")        
         sizing(lex)
-        exit(1)
         if ne(lex.nextc(),"}"):
             errexpec("}",lex.pos)
         print("end sizing")        
@@ -53,17 +53,21 @@ def exprpost(lex : LexerRegul):
 
 def exprprim(lex : LexerRegul):
     c = lex.nextc()
-    print("c",c)
+    print("mirp",{c})
     if eq(c,"."):
         print("any")        
-    if eq(c,"("):
+    elif eq(c,"("):
         print("group")
+        print("------------------")
         expr(lex)
+        print("lex.curc()",lex.curc())
+        print("------------------")
         if ne(lex.nextc(),")"):
             errexpec(")",lex.pos)
     
-    if eq(c,"["):
+    elif eq(c,"["):
         if eq(lex.curc(),"^"):
+            lex.nextc()
             print("notset")
         else:
             print("set")
@@ -72,6 +76,10 @@ def exprprim(lex : LexerRegul):
 
         if ne(lex.nextc(),"]"):
             errexpec("]",lex.pos)
+    else:
+        print({c})
+        if c in ["+","-","*","?","{","|"]:
+            lex.prevc()
 
 def sizing(lex : LexerRegul):
     if lex.curc().isnumeric():
@@ -86,13 +94,15 @@ def sizing(lex : LexerRegul):
 def item(lex : LexerRegul):
     while ne(lex.curc(),"]"):  
         range(lex)
+    print("set end")
 
 def range(lex : LexerRegul):
     ch(lex)
 
-    if eq(lex.nextc(),"-"):
-        print("is range")
+    if eq(lex.curc(),"-"):
+        lex.nextc()
         ch(lex)
+        print("is range")
 
 def digit(lex : LexerRegul):
     c = lex.nextc()
@@ -105,4 +115,4 @@ def digit(lex : LexerRegul):
     lex.prevc()
 
 def ch(lex : LexerRegul):
-    lex.nextc()
+    print("ch",lex.nextc())
