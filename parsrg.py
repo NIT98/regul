@@ -1,22 +1,23 @@
 from operator import eq, le,ne
+from astrg import ASTNode, AstType
 from lexrg import LexerRegul
 from loging import errexpec
 
 spec = ["[","]","(",")","{","}",".","+","*","?","|"]
 
-def parse(lex:LexerRegul):
+def parse(lex:LexerRegul) -> ASTNode:
+    root = ASTNode("syntax-tree",AstType.SYNTAX_TREE)
     if eq(lex.start(),"^"):
-        print("is start")
         lex.nextc()
+        root.setval("start",True)
 
     if eq(lex.end(),"$"):
-        print("is end")
         lex.dwnbound()
+        root.setval("end",True)
 
-    regex(lex)
+    root.addchild(regex(lex))
 
-    print("accepted!")
-    print(lex.input)
+    return root
 
 def regex(lex : LexerRegul):
     if lex.eoi():
