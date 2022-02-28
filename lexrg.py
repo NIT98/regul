@@ -1,4 +1,4 @@
-from operator import eq
+from utils import neq
 from loging import errlex
 
 class LexerRegul:
@@ -6,11 +6,11 @@ class LexerRegul:
         self.input = input[1:-1]
         self.pos = 0
         self.bound = len(self.input) 
-        if not eq(input[0],"/"):
+        if neq(input[0],"/"):
             errlex("regular expersion must started with '/'")
             exit(1)
 
-        if not eq(input[self.bound - 1],"/"):
+        if neq(input[self.bound + 1],"/"):
             errlex("regular expersion must ended with '/'")
             exit(1)
             
