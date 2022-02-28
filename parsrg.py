@@ -13,6 +13,12 @@ def parse(lex:LexerRegul):
  
     regex(lex)
 
+    if lex.nextc() == "$":
+        #ended with
+        pass
+    else:
+        lex.prevc()
+ 
     if lex.nextc() != "/":
         errpatt("input end with '/'")
         return
