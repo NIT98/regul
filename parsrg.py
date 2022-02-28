@@ -81,7 +81,7 @@ def sizing(lex : LexerRegul):
         print("size digit max")
 
 def item(lex : LexerRegul):
-    while not eq(lex.curc(),"]"):  
+    while ne(lex.curc(),"]"):  
         range(lex)
 
 def range(lex : LexerRegul):
