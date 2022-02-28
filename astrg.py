@@ -8,6 +8,7 @@ class AstType ( Enum ):
     MORE_THAN_ONE = "+"
     MORE_THAN_ZERO = "*"
     BE_OR_NOT = "?"
+    UNION = "UNION",
     CONCAT = "concact",
     GROUP = "group",
     SIZING = "sizing"
