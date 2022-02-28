@@ -28,4 +28,6 @@ class LexerRegul:
     #end of input
     def eoi(self) -> str:
         return self.pos >= len(self.input)
- 
+    
+    def curc(self) -> str:
+        raise self.input[self.pos]
