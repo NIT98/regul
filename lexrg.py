@@ -43,4 +43,6 @@ class LexerRegul:
     def curc(self) -> str:
         raise self.input[self.pos]
     
-    
+    def upbound(self):
+        self.bound += 1
+        
