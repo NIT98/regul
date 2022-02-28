@@ -15,7 +15,12 @@ def parse(lex:LexerRegul):
     print("accepted!")
 
 def regex(lex : LexerRegul):
-    lex.pos = len(lex.input) - 1
+    # lex.pos = len(lex.input) - 1
+    if lex.eoi():
+        return
+
+    expr(lex)
+    regex(lex)
 
 def expr(lex : LexerRegul):
     pass
