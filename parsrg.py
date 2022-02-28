@@ -3,13 +3,13 @@ from lexrg import LexerRegul
 from loging import errexpec, errpatt, errsyntx
 
 def parse(lex:LexerRegul):
-    if lex.curc() == "^":
+    if lex.start() == "^":
         lex.nextc()
- 
-    regex(lex)
 
-    if eq(lex.curc(),"$"):
+    if eq(lex.end(),"$"):
         lex.nextc()
+
+    regex(lex)
 
     print("accepted!")
 
