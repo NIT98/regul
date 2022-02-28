@@ -48,13 +48,15 @@ def expr(lex : LexerRegul):
         else:
             #set
             lex.prevc()
-    
+
+        item(lex)
+
         if not eq(lex.nextc(),"]"):
             errexpec("]",lex.pos)
         return
     
     lex.prevc()
-    
+
     expr(lex)
     
     c = lex.nextc()
