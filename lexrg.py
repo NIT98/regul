@@ -45,4 +45,7 @@ class LexerRegul:
     
     def upbound(self):
         self.bound += 1
-        
+    
+    def dwnbound(self):
+        self.bound -= 1
+    
