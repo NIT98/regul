@@ -39,16 +39,16 @@ def exprpost(lex : LexerRegul):
         
     c = lex.nextc()
     
-    if c == "+":
+    if eq(c,"+"):
         pass
-    elif c == "?":
+    elif eq(c,"?"):
         pass
-    elif c == "*":
+    elif eq(c,"*"):
         pass
-    elif c == "|":
+    elif eq(c,"|"):
         expr(lex)
         pass
-    elif c == "{":
+    elif eq(c,"{"):
         sizing(lex)
         if not eq(lex.nextc(),"}"):
             errexpec("}",lex.pos)
@@ -59,12 +59,12 @@ def exprpost(lex : LexerRegul):
 def expr(lex : LexerRegul):
     c = lex.nextc()
 
-    if c == ".":
-        return
-    if c == "(":
-        return
-    if c == "[":
-        if lex.nextc() == "^":
+    if eq(c,"."):
+        pass
+    if eq(c,"("):
+        pass
+    if eq(c,"["):
+        if eq(lex.nextc(),"^"):
             #not set
             pass
         else:
@@ -75,7 +75,6 @@ def expr(lex : LexerRegul):
 
         if not eq(lex.nextc(),"]"):
             errexpec("]",lex.pos)
-        return
     
 def sizing(lex : LexerRegul):
     if lex.curc().isnumeric():
