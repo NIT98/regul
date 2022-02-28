@@ -29,6 +29,9 @@ def regex(lex : LexerRegul):
 def expr(lex : LexerRegul):
     exprpost(lex)
 
+def exprunion(lex: LexerRegul):
+    pass
+
 def exprpost(lex : LexerRegul):
     exprprim(lex)
     
@@ -50,6 +53,12 @@ def exprpost(lex : LexerRegul):
         print("end sizing")        
     else:
         lex.prevc()
+
+def exprsize(lex : LexerRegul):
+    pass
+
+def unaryoprator(lex : LexerRegul):
+    pass
 
 def exprprim(lex : LexerRegul):
     c = lex.nextc()
@@ -80,6 +89,15 @@ def exprprim(lex : LexerRegul):
         print({c})
         if c in ["+","-","*","?","{","|"]:
             lex.prevc()
+
+def exprgroup(lex : LexerRegul):
+    pass
+
+def exprany(lex : LexerRegul):
+    pass
+
+def exprset(lex : LexerRegul):
+    pass
 
 def sizing(lex : LexerRegul):
     if lex.curc().isnumeric():
