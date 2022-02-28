@@ -33,3 +33,51 @@
     ch := *
     digit := digit digit | 0~9
 ```
+
+# Resolve ambiguity
+```
+    regex := | 
+            expr regex
+
+    expr-union := expr-unary  |
+        expr-unary | expr
+    
+    expr-post := expr-prim expr-unary |
+                 expr-prim expr-size
+                    
+    expr-size := { sizing }
+
+    unary-oprator := |
+        +   | 
+        ?   |
+        *
+
+    expr-prim := 
+        expr-group        |
+        expr-any          |
+        expr-set          |
+        ch
+
+    expr-group := ( expr ) 
+   
+    expr-any := .
+   
+    expr-set := 
+        [ item ]        | 
+        [^ item ]       | 
+
+    sizing :=  |
+
+            digit ,     |
+            , digit     |
+            digit , digit
+
+    item := |
+            range item |
+            ch item
+
+    range := ch-ch
+
+    ch := *
+    digit := digit digit | 0~9
+```
