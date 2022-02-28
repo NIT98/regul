@@ -47,19 +47,5 @@ class ASTNode():
     def setval(self,key:str,value : Any):
         self.value[key] = value
 
-    def getval(self,key:str,value : Any):
-        self.value[key] = value
-
-    def toany3(self,parent = None) -> Node:
-        if not parent:
-            parent = Node(self.label)
-
-        for i in range(0,len(self.children)):
-            child : ASTNode  = self.children[i]
-            ca3 = Node(child.label,parent=parent)
-            if child.getval("d"):
-                Node(child.getval("d"),parent=ca3)
-            else:
-                child.toany3(ca3)
-        
-        return parent
+    def getval(self,key:str):
+        return self.value.get(key)
