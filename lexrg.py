@@ -21,4 +21,6 @@ class LexerRegul:
 
     def start(self) -> str:
         return self.input[0]
-    
+
+    def end(self) -> str:
+        return self.input[len(self.input) - 1]
