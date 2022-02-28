@@ -135,15 +135,18 @@ def item(lex : LexerRegul):
         range(lex)
     print("set end")
 
-def range(lex : LexerRegul):
-    ch(lex)
+def range(lex : LexerRegul) -> ASTNode:
+    chast = ch(lex)
 
     if eq(lex.curc(),"-"):
         lex.nextc()
-        ch(lex)
-        print("is range")
+        rast = ASTNode("range",AstType.RANGE)
+        rast.addchild(chast)
+        rast.addchild(ch(lex))
+        return rast
 
-def digit(lex : LexerRegul):
+    return chast
+def digit(lex : LexerRegul) -> ASTNode:
     c = lex.nextc()
     t = ''
     while c.isnumeric():
@@ -152,9 +155,12 @@ def digit(lex : LexerRegul):
 
     lex.prevc()
 
-    ast = ASTNode("ch",AstType.CH)
-    ast.setval("d",t)
-    return ast
+    if t:
+        ast = ASTNode("ch",AstType.CH)
+        ast.setval("d",t)
+        return ast
+    
+    return None 
 
 def ch(lex : LexerRegul) -> ASTNode:
     ast = ASTNode("ch",AstType.CH)
