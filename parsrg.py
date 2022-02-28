@@ -90,7 +90,14 @@ def exprprim(lex : LexerRegul):
             lex.prevc()
 
 def exprgroup(lex : LexerRegul):
-    pass
+    print("group")        
+    if ne(lex.nextc(),"("):
+        errexpec("(",lex.pos)
+
+    expr(lex)
+    
+    if ne(lex.nextc(),")"):
+        errexpec(")",lex.pos)
 
 def exprany(lex : LexerRegul):
     pass
