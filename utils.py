@@ -6,17 +6,18 @@ def eq(a,b):
     return a == b
 def neq(a,b):
     return not (a == b)
+def toany3d(root : ASTNode,parent=None) -> Node: 
+    
+    if not parent:
+        parent = Node("root")
 
-def toany3d(parent : ASTNode) -> Node: 
-    root = Node(parent.label)
-
-    for i in range(0,len(parent.children)):
-        child : ASTNode  = parent.children[i]
-        ca3 = Node(child.label,parent=root)
+    for i in range(0,len(root.children)):
+        child : ASTNode  = root.children[i]
+        ca3 = Node(child.label,parent=parent)
         d = child.getval("d")
         if d:
             Node(d,parent=ca3)
 
-        child.toany3(ca3)
+        toany3d(child,ca3)
 
-    return root
+    return parent
