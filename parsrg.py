@@ -4,16 +4,18 @@ from loging import errpatt
 def parse(lex : LexerRegul):
     if lex.nextc() != "/":
         errpatt("input start with '/'")
+        exit(1)
     
     ast = regex(lex)
     
     if lex.nextc() != "/":
         errpatt("input end with '/'")
-            
+        exit(1)
+
     return ast
 
 def regex(lex : LexerRegul):
-    pass    
+    pass 
 
 def expr(lex : LexerRegul):
     pass
