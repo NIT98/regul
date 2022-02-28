@@ -1,10 +1,10 @@
 from operator import eq
 from lexrg import LexerRegul
-from loging import errpatt, errsyntx
+from loging import errexpec, errpatt, errsyntx
 
 def parse(lex:LexerRegul):
     if lex.nextc() != "/":
-        errpatt("input start with '/'")
+        errexpec("/",lex.pos)
         return
     if lex.nextc() == "^":
         #start with
@@ -21,7 +21,7 @@ def parse(lex:LexerRegul):
         lex.prevc()
  
     if lex.nextc() != "/":
-        errpatt("input end with '/'")
+        errexpec("/",lex.pos)
         return
 
     print("accepted!")
@@ -50,10 +50,11 @@ def expr(lex : LexerRegul):
             lex.prevc()
     
         if not eq(lex.nextc(),"]"):
-            errsyntx("expected ] on index %s",lex.pos - 1)
+            errexpec("]",lex.pos)
         return
     
     expr(lex)
+    
     c = lex.nextc()
     
     if c == "+":
@@ -68,8 +69,11 @@ def expr(lex : LexerRegul):
     if c == "{":
         sizing(lex)
         if not eq(lex.nextc(),"}"):
-            errsyntx("expected } on index %s" % lex.pos - 1);
+            errexpec("}",lex.pos)
         return
+
+    if c != '':
+        errsyntx("pattern is not valid")
     
 def sizing(lex : LexerRegul):
     pass
