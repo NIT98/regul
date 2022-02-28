@@ -53,6 +53,8 @@ def expr(lex : LexerRegul):
             errexpec("]",lex.pos)
         return
     
+    lex.prevc()
+    
     expr(lex)
     
     c = lex.nextc()
@@ -74,7 +76,7 @@ def expr(lex : LexerRegul):
 
     if c != '':
         errsyntx("pattern is not valid")
-    
+
 def sizing(lex : LexerRegul):
     pass
 
