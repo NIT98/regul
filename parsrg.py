@@ -57,7 +57,7 @@ def exprsize(lex : LexerRegul):
     print("end sizing")   
 
 def unaryoprator(lex : LexerRegul):
-    pass
+    return lex.curc() in ["+","*","?"]
 
 def exprprim(lex : LexerRegul):
     c = lex.nextc()
