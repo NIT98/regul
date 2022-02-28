@@ -18,12 +18,12 @@ def parse(lex:LexerRegul) -> ASTNode:
     return root
 
 def regex(lex : LexerRegul):
+    regast = ASTNode("regex",AstType.REGEX)
     if lex.eoi():
-        print("eoi")
-        return
+        return regast
 
-    expr(lex)
-    regex(lex)
+    regast.addchild(expr(lex))
+    regast.addchild(regex(lex))
 
 def expr(lex : LexerRegul):
     exprunion(lex)
