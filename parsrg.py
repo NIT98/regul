@@ -1,5 +1,6 @@
+from operator import eq
 from lexrg import LexerRegul
-from loging import errpatt
+from loging import errpatt, errsyntx
 
 def parse(lex:LexerRegul):
     if lex.nextc() != "/":
@@ -34,8 +35,42 @@ def regex(lex : LexerRegul):
     regex(lex)
 
 def expr(lex : LexerRegul):
-    pass
+    c = lex.nextc()
 
+    if c == ".":
+        return
+    if c == "(":
+        return
+    if c == "[":
+        if lex.nextc() == "^":
+            #not set
+            pass
+        else:
+            #set
+            lex.prevc()
+    
+        if not eq(lex.nextc(),"]"):
+            errsyntx("expected ] on index %s",lex.pos - 1)
+        return
+    
+    expr(lex)
+    c = lex.nextc()
+    
+    if c == "+":
+        return
+    if c == "?":
+        return
+    if c == "*":
+        return
+    if c == "|":
+        expr(lex)
+        return
+    if c == "{":
+        sizing(lex)
+        if not eq(lex.nextc(),"}"):
+            errsyntx("expected } on index %s" % lex.pos - 1);
+        return
+    
 def sizing(lex : LexerRegul):
     pass
 
