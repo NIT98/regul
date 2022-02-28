@@ -44,6 +44,7 @@ def exprpost(lex : LexerRegul):
     elif eq(c,"{"):
         print("start sizing")        
         sizing(lex)
+        exit(1)
         if ne(lex.nextc(),"}"):
             errexpec("}",lex.pos)
         print("end sizing")        
@@ -76,7 +77,9 @@ def sizing(lex : LexerRegul):
     if lex.curc().isnumeric():
         digit(lex)
         print("size digit min")
+    
     if eq(lex.curc(),","):
+        lex.nextc()
         digit(lex)
         print("size digit max")
 
