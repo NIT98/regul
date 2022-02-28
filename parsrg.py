@@ -6,13 +6,11 @@ def parse(lex : LexerRegul):
         errpatt("input start with '/'")
         exit(1)
     
-    ast = regex(lex)
+    regex(lex)
     
     if lex.nextc() != "/":
         errpatt("input end with '/'")
         exit(1)
-
-    return ast
 
 def regex(lex : LexerRegul):
     lex.pos = len(lex.input) - 1
