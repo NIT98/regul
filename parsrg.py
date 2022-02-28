@@ -95,10 +95,8 @@ def item(lex : LexerRegul):
 def range(lex : LexerRegul):
     ch1 = ch(lex)
 
-    if not eq(lex.nextc(),"-"):
-        errexpec("-",lex.pos)
-
-    ch2 = ch(lex)
+    if eq(lex.nextc(),"-"):
+        ch2 = ch(lex)
 
 def digit(lex : LexerRegul):
     pass
