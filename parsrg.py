@@ -27,10 +27,14 @@ def regex(lex : LexerRegul):
     regex(lex)
 
 def expr(lex : LexerRegul):
-    exprpost(lex)
+    exprunion(lex)
 
 def exprunion(lex: LexerRegul):
-    pass
+    exprpost(lex)
+
+    if eq(lex.curc(), "|"):
+        lex.nextc()
+        expr(lex)
 
 def exprpost(lex : LexerRegul):
     exprprim(lex)
