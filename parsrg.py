@@ -39,27 +39,22 @@ def exprunion(lex: LexerRegul):
 def exprpost(lex : LexerRegul):
     exprprim(lex)
     
-    c = lex.nextc()
-    if eq(c,"+"):
-        print("plus",lex.curc())     
-    elif eq(c,"?"):
-        print("ignore")        
-    elif eq(c,"*"):
-        print("more than 0")        
-    elif eq(c,"|"):
-        print("union")        
-        expr(lex)
-    elif eq(c,"{"):
-        print("sizing")        
-        sizing(lex)
-        if ne(lex.nextc(),"}"):
-            errexpec("}",lex.pos)
-        print("end sizing")        
-    else:
-        lex.prevc()
+    if unaryoprator(lex):
+        lex.nextc()
+    elif eq(lex.curc(),"{"):
+        exprsize(lex)
 
 def exprsize(lex : LexerRegul):
-    pass
+    if ne(lex.nextc(),"{"):
+        errexpec("{",lex.pos)
+
+    print("sizing")        
+    sizing(lex)
+    
+    if ne(lex.nextc(),"}"):
+        errexpec("}",lex.pos)
+    
+    print("end sizing")   
 
 def unaryoprator(lex : LexerRegul):
     pass
