@@ -5,7 +5,7 @@ from loging import errexpec, errpatt, errsyntx
 def parse(lex:LexerRegul):
     if lex.nextc() != "/":
         errexpec("/",lex.pos)
-        return
+        pass
     if lex.nextc() == "^":
         #start with
         pass
@@ -14,15 +14,11 @@ def parse(lex:LexerRegul):
  
     regex(lex)
 
-    if lex.nextc() == "$":
-        #ended with
+    if eq(lex.curc(),"$"):
         pass
-    else:
-        lex.prevc()
  
     if lex.nextc() != "/":
         errexpec("/",lex.pos)
-        return
 
     print("accepted!")
 
@@ -36,7 +32,7 @@ def regex(lex : LexerRegul):
 
 def expr(lex : LexerRegul):
     exprpost(lex)
-    
+
 def exprpost(lex : LexerRegul):
     exprprim(lex)
         
@@ -50,12 +46,10 @@ def exprpost(lex : LexerRegul):
         pass
     elif eq(c,"|"):
         expr(lex)
-        pass
     elif eq(c,"{"):
         sizing(lex)
         if not eq(lex.nextc(),"}"):
             errexpec("}",lex.pos)
-        return
     else:
         lex.prevc()
 
@@ -87,8 +81,7 @@ def sizing(lex : LexerRegul):
         digit(lex)
 
 def item(lex : LexerRegul):
-    c = lex.nextc()
-    while not eq(c,"]"):  
+    while not eq(lex.curc(),"]"):  
         range(lex)
 
 def range(lex : LexerRegul):
