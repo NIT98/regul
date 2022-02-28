@@ -26,6 +26,7 @@ def regex(lex : LexerRegul) -> ASTNode:
     regast.addchild(expr(lex))
     regast.addchild(regex(lex))
 
+    return regast
 def expr(lex : LexerRegul):
     return exprunion(lex)
 
@@ -59,7 +60,8 @@ def exprpost(lex : LexerRegul) -> ASTNode:
         return unast
 
     elif eq(lex.curc(),"{"):
-        sast = ASTNode("expr",AstType.POST_SIZING)
+        sast = ASTNode("expr-size",AstType.POST_SIZING)
+        sast.addchild(past)
         sast.addchild(exprsize(lex))
         return sast 
 
@@ -97,7 +99,7 @@ def exprgroup(lex : LexerRegul):
     if ne(lex.nextc(),"("):
         errexpec("(",lex.pos)
 
-    gast = ASTNode("expr",AstType.GROUP)
+    gast = ASTNode("expr-group",AstType.GROUP)
     gast.addchild(expr(lex))
 
     if ne(lex.nextc(),")"):
@@ -107,7 +109,7 @@ def exprgroup(lex : LexerRegul):
 
 def exprany(lex : LexerRegul):
     lex.nextc()
-    return ASTNode("expr",AstType.ANY)
+    return ASTNode("expr-any",AstType.ANY)
 
 def exprset(lex : LexerRegul):
     
@@ -115,13 +117,16 @@ def exprset(lex : LexerRegul):
         errexpec("]",lex.pos)
     
     type : AstType    
+    name : str    
     if eq(lex.curc(),"^"):
         lex.nextc()
+        name = "expr-not-set"
         type = AstType.ITEM_NOSET
     else:
+        name = "expr-set"
         type = AstType.ITEM_SET
 
-    setast = ASTNode("expr",type) 
+    setast = ASTNode(name,type) 
 
     setast.addchild(item(lex))
 
@@ -169,7 +174,7 @@ def digit(lex : LexerRegul) -> ASTNode:
     lex.prevc()
 
     if t:
-        ast = ASTNode("digit",AstType.CH)
+        ast = ASTNode("digit",AstType.DIGIT)
         ast.setval("d",t)
         return ast
     
