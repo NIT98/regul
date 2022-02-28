@@ -1,8 +1,19 @@
+from operator import eq
+from loging import errlex
+
 class LexerRegul:
     def __init__(self,input) -> None:
-        self.input = input
+        self.input = input[1:-1]
         self.pos = 0
 
+        if not eq(input[0],"/"):
+            errlex("regular expersion must started with '/'")
+            exit(1)
+
+        if not eq(input[len(self.input) - 1],"/"):
+            errlex("regular expersion must ended with '/'")
+            exit(1)
+            
     def nextc(self) -> str:
         if self.eoi():
             return ''
