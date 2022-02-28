@@ -83,7 +83,14 @@ def sizing(lex : LexerRegul):
     pass
 
 def item(lex : LexerRegul):
-    pass
+    c = lex.nextc()
+    while not eq(c,"]"):  
+        if eq(lex.nextc(),"-"):
+            lex.prevc()
+            lex.prevc()
+            range(lex)        
+        else:
+            lex.prevc()
 
 def range(lex : LexerRegul):
     pass
