@@ -3,8 +3,6 @@ from astrg import ASTNode, AstType
 from lexrg import LexerRegul
 from loging import errexpec
 
-spec = ["[","]","(",")","{","}",".","+","*","?","|"]
-
 def parse(lex:LexerRegul) -> ASTNode:
     root = ASTNode("syntax-tree",AstType.SYNTAX_TREE)
     if eq(lex.start(),"^"):
