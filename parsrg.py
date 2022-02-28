@@ -80,17 +80,17 @@ def exprsize(lex : LexerRegul) -> ASTNode:
 def unaryoprator(lex : LexerRegul):
     return lex.curc() in ["+","*","?"]
 
-def exprprim(lex : LexerRegul):
+def exprprim(lex : LexerRegul) -> ASTNode:
     c = lex.curc()
-    print("prim")
+
     if eq(c,"("):
-        exprgroup(lex)
+        return exprgroup(lex)
     elif eq(c,"["):
-        exprset(lex)
+        return exprset(lex)
     elif eq(c,"."):
-        exprany(lex)
-    else:
-        lex.nextc()
+        return exprany(lex)
+    
+    return ch(lex)
 
 def exprgroup(lex : LexerRegul):
     print("group")        
