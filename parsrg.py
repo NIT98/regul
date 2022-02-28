@@ -154,4 +154,6 @@ def digit(lex : LexerRegul):
     lex.prevc()
 
 def ch(lex : LexerRegul):
-    print("ch",lex.nextc())
+    ast = ASTNode("ch",AstType.CH)
+    ast.setval("data",lex.nextc())
+    return ast
