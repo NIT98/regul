@@ -2,7 +2,23 @@ from enum import Enum
 from typing import Any, Dict, List
 
 class AstType ( Enum ):
-    pass
+    REGEX = "regex"
+    EXPR = "expr"
+    MORE_THAN_ONE = "+"
+    MORE_THAN_ZERO = "*"
+    BE_OR_NOT = "?"
+    CONCAT = "concact",
+    GROUP = "group",
+    SIZING = "sizing"
+    ANY = ".",
+    START = "^",
+    END = "$",
+    ITEM_SET = "set",
+    ITEM_NOSET = "notset",
+    ITEM = "item",
+    RANGE = "range",
+    CH = "ch",
+    DIGIT = "digit"
 
 class ASTNode():
     label : str
