@@ -63,9 +63,9 @@ def exprprim(lex : LexerRegul):
     
     if eq(c,"["):
         if eq(lex.curc(),"^"):
-            print("set")
-        else:
             print("notset")
+        else:
+            print("set")
 
         item(lex)
 
