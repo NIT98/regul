@@ -7,6 +7,7 @@ def parse(lex:LexerRegul):
         lex.nextc()
 
     if eq(lex.end(),"$"):
+        lex.dwnbound()
         lex.nextc()
 
     regex(lex)
