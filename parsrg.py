@@ -65,16 +65,17 @@ def exprpost(lex : LexerRegul) -> ASTNode:
     else:
         return past
 
-def exprsize(lex : LexerRegul):
-    print("sizing")        
+def exprsize(lex : LexerRegul) -> ASTNode:
    
     if ne(lex.nextc(),"{"):
         errexpec("{",lex.pos)
 
-    sizing(lex)
+    sast = sizing(lex)
     
     if ne(lex.nextc(),"}"):
         errexpec("}",lex.pos)
+
+    return sast
 
 def unaryoprator(lex : LexerRegul):
     return lex.curc() in ["+","*","?"]
