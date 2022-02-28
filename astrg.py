@@ -1,14 +1,18 @@
 from enum import Enum
 from typing import Any, Dict, List
+from anytree import Node, RenderTree
 
 class AstType ( Enum ):
+    SYNTAX_TREE = "stree"
     REGEX = "regex"
     EXPR = "expr"
     MORE_THAN_ONE = "+"
     MORE_THAN_ZERO = "*"
     BE_OR_NOT = "?"
+    UNION = "UNION",
     CONCAT = "concact",
     GROUP = "group",
+    POST_SIZING = "POST_SIZING"
     SIZING = "sizing"
     ANY = ".",
     START = "^",
@@ -43,5 +47,5 @@ class ASTNode():
     def setval(self,key:str,value : Any):
         self.value[key] = value
 
-    def getval(self,key:str,value : Any):
-        self.value[key] = value
+    def getval(self,key:str):
+        return self.value.get(key)
