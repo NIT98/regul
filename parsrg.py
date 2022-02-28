@@ -131,9 +131,11 @@ def sizing(lex : LexerRegul):
         print("size max")
 
 def item(lex : LexerRegul):
+    itast = ASTNode("item",AstType.ITEM)
     while ne(lex.curc(),"]"):  
-        range(lex)
-    print("set end")
+        itast.addchild(range(lex))
+
+    return itast
 
 def range(lex : LexerRegul) -> ASTNode:
     chast = ch(lex)
