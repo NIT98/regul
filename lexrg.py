@@ -4,7 +4,7 @@ class LexerRegul:
         self.pos = 0
 
     def nextc(self) -> str:
-        if len(self.input) <= self.pos:
+        if self.eoi():
             return ''
 
         c = self.input[self.pos] 
@@ -18,3 +18,14 @@ class LexerRegul:
 
         self.pos -= 1
         return self.input[self.pos]
+
+    def start(self) -> str:
+        return self.input[0]
+
+    def end(self) -> str:
+        return self.input[len(self.input) - 1]
+
+    #end of input
+    def eoi(self) -> str:
+        return self.pos >= len(self.input)
+ 
