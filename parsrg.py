@@ -34,6 +34,28 @@ def regex(lex : LexerRegul):
     expr(lex)
     regex(lex)
 
+def exprpost(lex : LexerRegul):
+    expr(lex)
+        
+    c = lex.nextc()
+    
+    if c == "+":
+        pass
+    elif c == "?":
+        pass
+    elif c == "*":
+        pass
+    elif c == "|":
+        expr(lex)
+        pass
+    elif c == "{":
+        sizing(lex)
+        if not eq(lex.nextc(),"}"):
+            errexpec("}",lex.pos)
+        return
+    else:
+        lex.prevc()
+
 def expr(lex : LexerRegul):
     c = lex.nextc()
 
@@ -55,30 +77,6 @@ def expr(lex : LexerRegul):
             errexpec("]",lex.pos)
         return
     
-    lex.prevc()
-
-    expr(lex)
-    
-    c = lex.nextc()
-    
-    if c == "+":
-        return
-    if c == "?":
-        return
-    if c == "*":
-        return
-    if c == "|":
-        expr(lex)
-        return
-    if c == "{":
-        sizing(lex)
-        if not eq(lex.nextc(),"}"):
-            errexpec("}",lex.pos)
-        return
-
-    if c != '':
-        errsyntx("pattern is not valid")
-
 def sizing(lex : LexerRegul):
     if lex.curc().isnumeric():
         digit(lex)
