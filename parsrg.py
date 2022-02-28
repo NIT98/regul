@@ -169,7 +169,7 @@ def digit(lex : LexerRegul) -> ASTNode:
     lex.prevc()
 
     if t:
-        ast = ASTNode("ch",AstType.CH)
+        ast = ASTNode("digit",AstType.CH)
         ast.setval("d",t)
         return ast
     
