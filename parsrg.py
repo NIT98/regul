@@ -26,15 +26,19 @@ def regex(lex : LexerRegul) -> ASTNode:
     regast.addchild(regex(lex))
 
 def expr(lex : LexerRegul):
-    exprunion(lex)
+    return exprunion(lex)
 
-def exprunion(lex: LexerRegul):
-    exprpost(lex)
+def exprunion(lex: LexerRegul) -> ASTNode:
+    past = exprpost(lex)
 
     if eq(lex.curc(), "|"):
-        print("union")
         lex.nextc()
-        expr(lex)
+        uast = ASTNode("union",AstType.UNION)
+        uast.addchild(past)
+        uast.addchild(expr(lex))
+        return uast 
+
+    return past
 
 def exprpost(lex : LexerRegul):
     exprprim(lex)
