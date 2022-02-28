@@ -34,8 +34,11 @@ def regex(lex : LexerRegul):
     expr(lex)
     regex(lex)
 
+def expr(lex : LexerRegul):
+    exprpost(lex)
+    
 def exprpost(lex : LexerRegul):
-    expr(lex)
+    exprprim(lex)
         
     c = lex.nextc()
     
@@ -56,7 +59,7 @@ def exprpost(lex : LexerRegul):
     else:
         lex.prevc()
 
-def expr(lex : LexerRegul):
+def exprprim(lex : LexerRegul):
     c = lex.nextc()
 
     if eq(c,"."):
