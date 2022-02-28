@@ -15,4 +15,6 @@ class ASTNode():
         self.children = [] 
         self.value = dict()
 
+    def addchild(self,child):
+        self.children.append(child)
     
