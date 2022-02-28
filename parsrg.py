@@ -60,34 +60,7 @@ def unaryoprator(lex : LexerRegul):
     return lex.curc() in ["+","*","?"]
 
 def exprprim(lex : LexerRegul):
-    c = lex.nextc()
-    print("mirp",{c})
-    if eq(c,"."):
-        print("any")        
-    elif eq(c,"("):
-        print("group")
-        print("------------------")
-        expr(lex)
-        print("lex.curc()",lex.curc())
-        print("------------------")
-        if ne(lex.nextc(),")"):
-            errexpec(")",lex.pos)
-    
-    elif eq(c,"["):
-        if eq(lex.curc(),"^"):
-            lex.nextc()
-            print("notset")
-        else:
-            print("set")
-
-        item(lex)
-
-        if ne(lex.nextc(),"]"):
-            errexpec("]",lex.pos)
-    else:
-        print({c})
-        if c in ["+","-","*","?","{","|"]:
-            lex.prevc()
+    pass
 
 def exprgroup(lex : LexerRegul):
     print("group")        
@@ -103,7 +76,16 @@ def exprany(lex : LexerRegul):
     return eq(lex.curc(), ".")
 
 def exprset(lex : LexerRegul):
-    pass
+    if eq(lex.curc(),"^"):
+        lex.nextc()
+        print("notset")
+    else:
+        print("set")
+
+    item(lex)
+
+    if ne(lex.nextc(),"]"):
+        errexpec("]",lex.pos)
 
 def sizing(lex : LexerRegul):
     if lex.curc().isnumeric():
