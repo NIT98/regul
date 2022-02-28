@@ -94,14 +94,16 @@ def exprprim(lex : LexerRegul) -> ASTNode:
     return ch(lex)
 
 def exprgroup(lex : LexerRegul):
-    print("group")        
     if ne(lex.nextc(),"("):
         errexpec("(",lex.pos)
 
-    expr(lex)
-    
+    gast = ASTNode("expr",AstType.GROUP)
+    gast.addchild(expr(lex))
+
     if ne(lex.nextc(),")"):
         errexpec(")",lex.pos)
+
+    return gast
 
 def exprany(lex : LexerRegul):
     lex.nextc()
