@@ -59,7 +59,7 @@ def exprpost(lex : LexerRegul) -> ASTNode:
         return unast
 
     elif eq(lex.curc(),"{"):
-        sast = ASTNode("size",AstType.SIZING)
+        sast = ASTNode("expr",AstType.SIZING)
         sast.addchild()
         return exprsize(lex)
 
@@ -105,21 +105,28 @@ def exprgroup(lex : LexerRegul):
 
 def exprany(lex : LexerRegul):
     lex.nextc()
+    return ASTNode("expr",AstType.ANY)
 
 def exprset(lex : LexerRegul):
+    
     if ne(lex.nextc(),"["):
         errexpec("]",lex.pos)
     
+    type : AstType    
     if eq(lex.curc(),"^"):
         lex.nextc()
-        print("notset")
+        type = AstType.ITEM_NOSET
     else:
-        print("set")
+        type = AstType.ITEM_SET
 
-    item(lex)
+    setast = ASTNode("expr",type) 
+
+    setast.addchild(item(lex))
 
     if ne(lex.nextc(),"]"):
         errexpec("]",lex.pos)
+
+    return setast
 
 def sizing(lex : LexerRegul):
     szast = ASTNode("sizing",AstType.SIZING)
