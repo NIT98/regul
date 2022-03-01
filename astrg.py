@@ -49,3 +49,6 @@ class ASTNode():
 
     def getval(self,key:str):
         return self.value.get(key)
+    
+    def eqtype(self,type:AstType):
+        return self.type == type
