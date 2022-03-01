@@ -1,5 +1,6 @@
 from typing_extensions import Self
 from astrg import ASTNode
+from lexrg import LexerRegul
 from parsrg import parse
 
 class Regul:
@@ -7,4 +8,7 @@ class Regul:
         self.ast = ast
 
     def compile(pattern:str) -> Self:
-        return Regul(parse(pattern))
+        lex = LexerRegul(pattern)
+        prs = parse(lex)
+        return Regul(prs)
+    
