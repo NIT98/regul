@@ -24,6 +24,12 @@ class Regul:
     def rststr(self):
         self.string = None
         self.cpos = -1
-        
-    
 
+    def nxtcpos(self):
+        self.cpos += 1
+
+    def prvcpos(self):
+        self.cpos -= 1
+
+    def setcpos(self,cpos : int):
+        self.cpos = cpos
