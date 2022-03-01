@@ -7,11 +7,23 @@ class Regul:
     
     def __init__(self,ast : ASTNode) -> None:
         self.ast = ast
-        self.input = None
+        self.string = None
         self.cpos = -1
 
     def compile(pattern:str) -> Self:
         lex = LexerRegul(pattern)
         prs = parse(lex)
         return Regul(prs)
+
+    def match(self,string : str):
+        self.string = string
+        self.cpos = 0
+        #start match sub function
+        self.rststr()
+
+    def rststr(self):
+        self.string = None
+        self.cpos = -1
+        
+    
 
