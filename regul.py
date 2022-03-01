@@ -33,3 +33,10 @@ class Regul:
 
     def setcpos(self,cpos : int):
         self.cpos = cpos
+
+    def interpret(self,ast : ASTNode):
+        pass
+    
+    def expr(self,ast : ASTNode):
+        pass
+    
