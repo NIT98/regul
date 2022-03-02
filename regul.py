@@ -56,31 +56,35 @@ class Regul:
         if not ast.eqtype(AstType.UNION):
             self.exprunary(ast)
         else:
-            pass
+            self.expr(ast.child(0))
+            self.expr(ast.child(1))
    
     def exprunary(self,ast : ASTNode):
         if not ast.type in posttype:
             self.exprsize(ast)
         else:
-            pass
+            opr = ast.type
+            self.expr(ast.child(0))
     
     def exprsize(self,ast : ASTNode):
         if not ast.eqtype(AstType.POST_SIZING):
             self.exprgoup(ast)
         else:
-            pass
+            self.expr(ast.child(0))
+            self.expr(ast.child(1))
    
     def exprgoup(self,ast : ASTNode):
         if not ast.eqtype(AstType.GROUP):
             self.exprset(ast)
         else:
-            pass
+            self.expr(ast.child(0))
 
     def exprset(self,ast : ASTNode):
         if not ast.eqtype(AstType.ITEM_SET):
             self.exprany(ast)
         else:
-            pass
+            isnot = ast.getval("d")
+            self.expr(ast.child(0))
 
     def exprany(self,ast : ASTNode):
         if not ast.eqtype(AstType.ANY):
@@ -92,26 +96,27 @@ class Regul:
         if not ast.eqtype(AstType.ITEM):
             self.sizing(ast)
         else:
-            pass
+            for sit in ast.children:
+                self.expr(sit)
 
     def sizing(self,ast : ASTNode):
         if not ast.eqtype(AstType.POST_SIZING):
             self.range(ast)
         else:
-            pass
+            ch1 : ASTNode = ast.child(0) 
+            ch2 : ASTNode = ast.child(1)
+            min = ch1.getval("d")
+            max = ch2.getval("d")
    
     def range(self,ast : ASTNode):
         if not ast.eqtype(AstType.POST_SIZING):
             self.exprunary(ast)
         else:
-            pass
-      
-    def digit(self,ast : ASTNode):
-        if not ast.eqtype(AstType.DIGIT):
-            self.ch(ast)
-        else:
-            pass
-      
+            ch1 : ASTNode = ast.child(0) 
+            ch2 : ASTNode = ast.child(1)
+            l = ch1.getval("d")
+            r = ch2.getval("d")
+ 
     def ch(self,ast : ASTNode):
-        if not ast.eqtype(AstType.CH):
+        if ast.eqtype(AstType.CH):
             pass
