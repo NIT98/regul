@@ -114,19 +114,15 @@ def exprany(lex : LexerRegul):
 def exprset(lex : LexerRegul):
     
     if ne(lex.nextc(),"["):
-        errexpec("]",lex.pos)
-    
-    type : AstType    
-    name : str    
+        errexpec("[",lex.pos)
+
+    setast = ASTNode("expr-set",AstType.ITEM_SET) 
+
     if eq(lex.curc(),"^"):
         lex.nextc()
-        name = "expr-not-set"
-        type = AstType.ITEM_NOSET
+        setast.getval("d",True)
     else:
-        name = "expr-set"
-        type = AstType.ITEM_SET
-
-    setast = ASTNode(name,type) 
+        setast.getval("d",False)
 
     setast.addchild(item(lex))
 
