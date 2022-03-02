@@ -3,6 +3,8 @@ from astrg import ASTNode, AstType
 from lexrg import LexerRegul
 from parsrg import parse
 
+posttype = [AstType.MORE_THAN_ZERO,AstType.MORE_THAN_ONE,AstType.BE_OR_NOT]
+
 class Regul:
     
     def __init__(self,ast : ASTNode) -> None:
@@ -48,8 +50,68 @@ class Regul:
             print("interpret error ast")
     
     def expr(self,ast : ASTNode):
-        pass
+        self.exprunion(ast)
+    
     def exprunion(self,ast : ASTNode):
-        pass
+        if not ast.eqtype(AstType.UNION):
+            self.exprunary(ast)
+        else:
+            pass
+   
+    def exprunary(self,ast : ASTNode):
+        if not ast.type in posttype:
+            self.exprsize(ast)
+        else:
+            pass
     
-    
+    def exprsize(self,ast : ASTNode):
+        if not ast.eqtype(AstType.POST_SIZING):
+            self.exprgoup(ast)
+        else:
+            pass
+   
+    def exprgoup(self,ast : ASTNode):
+        if not ast.eqtype(AstType.GROUP):
+            self.exprset(ast)
+        else:
+            pass
+
+    def exprset(self,ast : ASTNode):
+        if not ast.eqtype(AstType.ITEM_SET):
+            self.exprany(ast)
+        else:
+            pass
+
+    def exprany(self,ast : ASTNode):
+        if not ast.eqtype(AstType.ANY):
+            self.item(ast)
+        else:
+            pass
+
+    def item(self,ast : ASTNode):
+        if not ast.eqtype(AstType.ITEM):
+            self.sizing(ast)
+        else:
+            pass
+
+    def sizing(self,ast : ASTNode):
+        if not ast.eqtype(AstType.POST_SIZING):
+            self.range(ast)
+        else:
+            pass
+   
+    def range(self,ast : ASTNode):
+        if not ast.eqtype(AstType.POST_SIZING):
+            self.exprunary(ast)
+        else:
+            pass
+      
+    def digit(self,ast : ASTNode):
+        if not ast.eqtype(AstType.DIGIT):
+            self.ch(ast)
+        else:
+            pass
+      
+    def ch(self,ast : ASTNode):
+        if not ast.eqtype(AstType.CH):
+            pass
