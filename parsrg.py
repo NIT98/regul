@@ -120,9 +120,9 @@ def exprset(lex : LexerRegul):
 
     if eq(lex.curc(),"^"):
         lex.nextc()
-        setast.getval("d",True)
+        setast.setval("d",True)
     else:
-        setast.getval("d",False)
+        setast.setval("d",False)
 
     setast.addchild(item(lex))
 
