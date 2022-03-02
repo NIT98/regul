@@ -114,8 +114,8 @@ class Regul:
         else:
             ch1 : ASTNode = ast.child(0) 
             ch2 : ASTNode = ast.child(1)
-            l = ch1.getval("d")
-            r = ch2.getval("d")
+            l = ord(ch1.getval("d"))
+            r = ord(ch2.getval("d"))
  
     def ch(self,ast : ASTNode):
         if ast.eqtype(AstType.CH):
